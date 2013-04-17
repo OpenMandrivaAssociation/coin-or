@@ -1,0 +1,11 @@
+diff -Naur CoinAll-1.6.0.orig/cppad/cppad/speed/sparse_evaluate.hpp CoinAll-1.6.0/cppad/cppad/speed/sparse_evaluate.hpp
+--- CoinAll-1.6.0.orig/cppad/cppad/speed/sparse_evaluate.hpp	2013-02-11 16:22:02.356655459 +0400
++++ CoinAll-1.6.0/cppad/cppad/speed/sparse_evaluate.hpp	2013-02-11 16:22:30.738660726 +0400
+@@ -159,6 +159,7 @@
+ ------------------------------------------------------------------------------
+ */
+ // BEGIN PROGRAM
++# include "math.h"
+ # include <cppad/local/cppad_assert.hpp>
+ # include <cppad/check_numeric_type.hpp>
+ # include <cppad/vector.hpp>

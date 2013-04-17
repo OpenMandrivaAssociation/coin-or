@@ -2,8 +2,10 @@
 %define _disable_ld_no_undefined	1
 
 %define name	coin-or
-%define major	0
-%define libname	%mklibname %{name} %{major}
+#%define major	0
+#%define libname	%mklibname %{name} %{major}
+%define libname coin-or-libs
+%define develname coin-or-devel
 
 Epoch:		1
 
@@ -11,13 +13,12 @@ Name:		%{name}
 Group:		Sciences/Mathematics
 License:	CPL
 Summary:	COmputational INfrastructure for Operations Research
-Version:	1.3.1
-Release:	%mkrel 1
+Version:	1.6.0
+Release:	1
 URL:		http://www.coin-or.org/
-Source0:	http://www.coin-or.org/download/source/CoinAll/CoinAll-1.3.1.tgz
+Source0:	http://www.coin-or.org/download/source/CoinAll/CoinAll-1.6.0.tgz
 # wget http://netlib.sandia.gov/cgi-bin/netlib/netlibfiles.tar?filename=netlib/ampl/solvers
 Source1:	solvers.tar
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires:	blas-devel
 BuildRequires:	glpk-devel
@@ -27,7 +28,9 @@ BuildRequires:	readline-devel
 Obsoletes:	cbc = 2.4.0
 Provides:	cbc = 2.4.0
 
-Patch0:		CoinAll-1.3.1-format.patch
+Patch0:		CoinAll-1.6.0-format.patch
+Patch1:		CoinAll-1.6.0-math.h.patch
+Patch2:		CoinAll-1.6.0-svn_rev.patch
 
 %description
 The Computational Infrastructure for Operations Research (COIN-OR**, or
@@ -76,7 +79,7 @@ The Computational Infrastructure for Operations Research (COIN-OR**, or
 simply COIN) project is an initiative to spur the development of open-source
 software for the operations research community.
 
-%package	-n lib%{name}-devel
+%package	-n %{develname}
 Group:		Development/C
 License:	CPL
 Summary:	An open-source mixed integer programming solver
@@ -85,7 +88,7 @@ Provides:	%{name}-devel = %{version}-%{release}
 Obsoletes:	libcbc-devel = 2.4.0
 Provides:	libcbc-devel = 2.4.0
 
-%description	-n lib%{name}-devel
+%description	-n %{develname}
 The Computational Infrastructure for Operations Research (COIN-OR**, or
 simply COIN) project is an initiative to spur the development of open-source
 software for the operations research community.
@@ -99,16 +102,20 @@ pushd ThirdParty/ASL
 popd
 
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
+export PKG_CONFIG_PATH="%{buildroot}%{_libdir}/pkgconfig"
 %configure2_5x
 %make
 
 %install
 %makeinstall_std
+# Hack ...
+rm -rf %{buildroot}/builddir/build/BUILDROOT/%{name}-%{version}-*-buildroot/usr/share/coin/doc/CoinMP/
 
 %clean
-rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
@@ -118,22 +125,31 @@ rm -rf %{buildroot}
 %{_bindir}/clp
 %{_bindir}/couenne
 %{_bindir}/ipopt
-%{_bindir}/OSAmplClient
+#%{_bindir}/OSAmplClient
 %{_bindir}/OSSolverService
 %{_bindir}/symphony
 
 %files		-n %{libname}
 %defattr(-,root,root)
-%{_libdir}/lib*.so.%{major}*
+%{_libdir}/lib*.so.*
 
-%files		-n lib%{name}-devel
+%files		-n %{develname}
 %defattr(-,root,root)
 %dir %{_includedir}/coin
 %{_includedir}/coin/*
 %dir %{_includedir}/cppad
 %{_includedir}/cppad/*
-%{_libdir}/amplsolver.a
-%{_libdir}/lib*.la
+#%{_libdir}/amplsolver.a
+#%{_libdir}/lib*.la
+%{_libdir}/pkgconfig/*
 %{_libdir}/lib*.so
-%dir %{_docdir}/coin
-%{_docdir}/coin/*
+%dir %{_datadir}/coin
+%{_datadir}/coin/*
+
+
+%changelog
+* Tue Jul 13 2010 Paulo Andrade <pcpa@mandriva.com.br> 1:1.3.1-1mdv2011.0
++ Revision: 552935
+- Import full coin-or (1.3.1), obsoleting previous cbc (2.4.0) package.
+- coir-or
+

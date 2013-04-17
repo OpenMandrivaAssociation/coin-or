@@ -1,3 +1,5 @@
+removed_sources:
+  CoinAll-1.3.1.tgz: d38442e2f92ae99013ab7ba2e514ec4d623af93e
 sources:
-  "CoinAll-1.3.1.tgz:"	d38442e2f92ae99013ab7ba2e514ec4d623af93e
-  "solvers.tar:"	57b058af9525e17c559921aa5194447990c75279
+  CoinAll-1.6.0.tgz: e292927ac8c99dde970b1d3b34a196462f5b98f5
+  solvers.tar: 57b058af9525e17c559921aa5194447990c75279

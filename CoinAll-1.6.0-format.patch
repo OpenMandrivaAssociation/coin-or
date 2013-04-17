@@ -1,0 +1,41 @@
+diff -Naur CoinAll-1.6.0.orig/Clp/src/CbcOrClpParam.cpp CoinAll-1.6.0/Clp/src/CbcOrClpParam.cpp
+--- CoinAll-1.6.0.orig/Clp/src/CbcOrClpParam.cpp	2011-06-19 20:27:26.000000000 +0400
++++ CoinAll-1.6.0/Clp/src/CbcOrClpParam.cpp	2012-09-26 23:25:52.000000000 +0400
+@@ -1079,7 +1079,7 @@
+           }
+ #else
+           if (CbcOrClpReadCommand == stdin) {
+-               fprintf(stdout, coin_prompt);
++               fprintf(stdout, "%s", coin_prompt);
+                fflush(stdout);
+           }
+           where = fgets(line, 1000, CbcOrClpReadCommand);
+diff -Naur CoinAll-1.6.0.orig/CoinUtils/src/CoinMessageHandler.cpp CoinAll-1.6.0/CoinUtils/src/CoinMessageHandler.cpp
+--- CoinAll-1.6.0.orig/CoinUtils/src/CoinMessageHandler.cpp	2011-06-19 19:34:41.000000000 +0400
++++ CoinAll-1.6.0/CoinUtils/src/CoinMessageHandler.cpp	2012-09-26 22:53:22.000000000 +0400
+@@ -761,7 +761,7 @@
+ 	  sprintf(messageOut_,g_format_,doublevalue);
+ 	  if (next != format_+2) {
+ 	    messageOut_+=strlen(messageOut_);
+-	    sprintf(messageOut_,format_+2);
++	    sprintf(messageOut_,"%s",format_+2);
+ 	  }
+ 	}
+ 	messageOut_+=strlen(messageOut_);
+diff -Naur CoinAll-1.6.0.orig/ThirdParty/ASL/solvers/arithchk.c CoinAll-1.6.0/ThirdParty/ASL/solvers/arithchk.c
+--- CoinAll-1.6.0.orig/ThirdParty/ASL/solvers/arithchk.c	2007-06-19 06:03:21.000000000 +0400
++++ CoinAll-1.6.0/ThirdParty/ASL/solvers/arithchk.c	2012-09-26 22:51:01.000000000 +0400
+@@ -122,10 +122,10 @@
+ 	long Cray1;
+ 
+ 	/* Cray1 = 4617762693716115456 -- without overflow on non-Crays */
+-	Cray1 = printf(emptyfmt) < 0 ? 0 : 4617762;
+-	if (printf(emptyfmt, Cray1) >= 0)
++	Cray1 = printf("%s", emptyfmt) < 0 ? 0 : 4617762;
++	if (printf("%s", emptyfmt, Cray1) >= 0)
+ 		Cray1 = 1000000*Cray1 + 693716;
+-	if (printf(emptyfmt, Cray1) >= 0)
++	if (printf("%s", emptyfmt, Cray1) >= 0)
+ 		Cray1 = 1000000*Cray1 + 115456;
+ 	u.d = 1e13;
+ 	if (u.L == Cray1)

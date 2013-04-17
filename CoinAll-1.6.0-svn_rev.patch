@@ -1,0 +1,81 @@
+diff -Naur CoinAll-1.6.0.orig/Alps/src/AlpsKnowledgeBrokerMPI.cpp CoinAll-1.6.0/Alps/src/AlpsKnowledgeBrokerMPI.cpp
+--- CoinAll-1.6.0.orig/Alps/src/AlpsKnowledgeBrokerMPI.cpp	2013-04-16 13:34:23.541225066 +0400
++++ CoinAll-1.6.0/Alps/src/AlpsKnowledgeBrokerMPI.cpp	2013-04-16 13:34:41.022228969 +0400
+@@ -4233,9 +4233,6 @@
+ 		std::cout << "==  Version: Trunk (unstable) \n";
+ 	    }
+ 	    std::cout << "==  Build Date: " <<  __DATE__;
+-#ifdef ALPS_SVN_REV
+-	    std::cout << "\n==  Revision Number: " << ALPS_SVN_REV;
+-#endif
+ 	    std::cout << std::endl;
+         }
+ 
+diff -Naur CoinAll-1.6.0.orig/Alps/src/AlpsKnowledgeBrokerSerial.cpp CoinAll-1.6.0/Alps/src/AlpsKnowledgeBrokerSerial.cpp
+--- CoinAll-1.6.0.orig/Alps/src/AlpsKnowledgeBrokerSerial.cpp	2013-04-16 13:34:23.549225097 +0400
++++ CoinAll-1.6.0/Alps/src/AlpsKnowledgeBrokerSerial.cpp	2013-04-16 13:34:43.791229279 +0400
+@@ -65,9 +65,6 @@
+ 		std::cout << "==  Version: Trunk (unstable) \n";
+ 	    }
+ 	    std::cout << "==  Build Date: " <<  __DATE__;
+-#ifdef ALPS_SVN_REV
+-	    std::cout << "\n==  Revision Number: " << ALPS_SVN_REV;
+-#endif
+ 	    std::cout << std::endl;
+     }
+ 
+diff -Naur CoinAll-1.6.0.orig/Cbc/src/CbcSolver.cpp CoinAll-1.6.0/Cbc/src/CbcSolver.cpp
+--- CoinAll-1.6.0.orig/Cbc/src/CbcSolver.cpp	2013-04-16 13:34:21.513224234 +0400
++++ CoinAll-1.6.0/Cbc/src/CbcSolver.cpp	2013-04-16 13:34:31.231227071 +0400
+@@ -1665,10 +1665,6 @@
+ 	    }
+ 	    sprintf(generalPrint + strlen(generalPrint),
+ 		    "Build Date: %s \n", __DATE__);
+-#ifdef CBC_SVN_REV
+-	    sprintf(generalPrint + strlen(generalPrint),
+-		    "Revision Number: %d \n", CBC_SVN_REV);
+-#endif
+             generalMessageHandler->message(CLP_GENERAL, generalMessages)
+             << generalPrint
+             << CoinMessageEol;
+diff -Naur CoinAll-1.6.0.orig/Dip/src/DecompApp.cpp CoinAll-1.6.0/Dip/src/DecompApp.cpp
+--- CoinAll-1.6.0.orig/Dip/src/DecompApp.cpp	2013-04-16 13:34:22.388224702 +0400
++++ CoinAll-1.6.0/Dip/src/DecompApp.cpp	2013-04-16 13:34:37.950228603 +0400
+@@ -31,9 +31,6 @@
+ 	 <<   "\nDistributed under the Eclipse Public License 1.0"
+ 	 <<   "\nVersion: " << DIP_VERSION
+ 	 <<   "\nBuild Date: " << __DATE__
+-#ifdef DIP_SVN_REV
+-	 <<   "\nRevision Number: " << DIP_SVN_REV
+-#endif
+ 	 << "\n========================================================"
+ 	 << "\n========================================================"
+ 	 << "\n";
+diff -Naur CoinAll-1.6.0.orig/OS/src/OSUtils/OSParameters.cpp CoinAll-1.6.0/OS/src/OSUtils/OSParameters.cpp
+--- CoinAll-1.6.0.orig/OS/src/OSUtils/OSParameters.cpp	2013-04-16 13:34:21.393224114 +0400
++++ CoinAll-1.6.0/OS/src/OSUtils/OSParameters.cpp	2013-04-16 13:34:48.798229848 +0400
+@@ -85,11 +85,6 @@
+     versionInfo << __DATE__;
+     versionInfo << std::endl;
+ 
+-#ifdef OS_SVN_REV
+-    versionInfo << "SVN Version: ";
+-    versionInfo << OS_SVN_REV;
+-#endif
+-
+     versionInfo << std::endl << std::endl;
+     return versionInfo.str() ;
+ }
+diff -Naur CoinAll-1.6.0.orig/SYMPHONY/src/Master/master.c CoinAll-1.6.0/SYMPHONY/src/Master/master.c
+--- CoinAll-1.6.0.orig/SYMPHONY/src/Master/master.c	2013-04-16 13:34:21.568224289 +0400
++++ CoinAll-1.6.0/SYMPHONY/src/Master/master.c	2013-04-16 13:34:52.126230249 +0400
+@@ -73,9 +73,6 @@
+       printf("==  Version: Trunk (unstable) \n");
+    }
+    printf("==  Build Date: %s \n", __DATE__);
+-#ifdef SYMPHONY_SVN_REV
+-   printf("==  Revision Number: %d \n", SYMPHONY_SVN_REV);
+-#endif
+    printf("\n");
+ }
+ 
