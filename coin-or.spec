@@ -15,7 +15,7 @@ License:	CPL
 Summary:	COmputational INfrastructure for Operations Research
 Version:	1.6.0
 Release:	1
-URL:		http://www.coin-or.org/
+URL:		https://www.coin-or.org/
 Source0:	http://www.coin-or.org/download/source/CoinAll/CoinAll-1.6.0.tgz
 # wget http://netlib.sandia.gov/cgi-bin/netlib/netlibfiles.tar?filename=netlib/ampl/solvers
 Source1:	solvers.tar
