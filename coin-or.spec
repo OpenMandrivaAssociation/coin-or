@@ -20,6 +20,11 @@ Source0:	http://www.coin-or.org/download/source/CoinAll/CoinAll-1.6.0.tgz
 # wget http://netlib.sandia.gov/cgi-bin/netlib/netlibfiles.tar?filename=netlib/ampl/solvers
 Source1:	solvers.tar
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	blas-devel
 BuildRequires:	glpk-devel
 BuildRequires:	lapack-devel
